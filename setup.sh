@@ -1,43 +1,53 @@
 #!/bin/bash
 
 echo "Welcome to the AskAI setup script!"
-echo "______________________________________"
+echo "-------------------------------"
+
+# Step 1: Ensure Python3 is installed
 echo "Checking for Python3 installation..."
 if ! command -v python3 &>/dev/null; then
     echo "Python3 is not installed. Installing Python3..."
     sudo apt update
-    sudo apt install -y python3
+    sudo apt install -y python3 python3-venv
 else
     echo "Python3 is already installed."
 fi
-echo "______________________________________"
+echo "-------------------------------"
 
-echo "Checking for pip installation..."
-if ! command -v pip3 &>/dev/null; then
-    echo "pip3 is not installed. Installing pip..."
-    sudo apt install -y python3-pip
+
+echo "Checking for pipx installation..."
+if ! command -v pipx &>/dev/null; then
+    echo "pipx is not installed. Installing pipx..."
+    sudo apt update
+    sudo apt install -y pipx
+
+    export PATH="$PATH:~/.local/bin"
 else
-    echo "pip3 is already installed."
+    echo "pipx is already installed."
 fi
-echo "______________________________________"
+echo "-------------------------------"
 
-echo "Upgrading pip to the latest version..."
-pip3 install --upgrade pip
+# Step 3: Install required Python packages using pipx
+echo "Installing required Python dependencies using pipx..."
+pipx install google-generativeai
+pipx install python-dotenv
+echo "-------------------------------"
 
-echo "______________________________________"
-echo "Installing required Python dependencies..."
-pip3 install google-generativeai python-dotenv argparse
+# Note: argparse does not need installation; it's part of Python’s standard library.
 
-echo "______________________________________"
+# Step 4: Ask the user for their API key and save it to a .env file
 echo "Please enter your Google Generative AI API key:"
-read -s API_KEY 
+read -s API_KEY  # -s makes the input secret
 echo "Saving your API key securely in a .env file..."
 echo "API_KEY=\"$API_KEY\"" > .env
+echo "-------------------------------"
 
-echo "______________________________________"
+# Step 5: Make scripts executable
 echo "Making scripts executable..."
 chmod +x askai
+echo "-------------------------------"
 
-echo "______________________________________"
+# Step 6: Confirm setup completion
 echo "Setup is complete. You can now use AskAI by running:"
 echo "./askai \"Your prompt here\""
+echo "-------------------------------"
