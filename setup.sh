@@ -35,14 +35,14 @@ echo "Upgrading pip inside the virtual environment..."
 pip install --upgrade pip
 echo "-------------------------------"
 
-# Step 5: Install required Python dependencies
+
 echo "Installing required Python dependencies..."
 pip install google-generativeai python-dotenv
 echo "-------------------------------"
 
-# Step 6: Ask the user for their API key and save it to a .env file
+
 echo "Please enter your Google Generative AI API key:"
-read -s API_KEY  # -s makes the input secret
+read API_KEY 
 echo "Saving your API key securely in a .env file..."
 echo "API_KEY=\"$API_KEY\"" > .env
 echo "-------------------------------"
