@@ -8,4 +8,4 @@ fi
 
 PROMPT="$*"
 
-python3 generate_ai.py "$PROMPT"
+python3 main.py "$PROMPT"
