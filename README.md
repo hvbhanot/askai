@@ -21,5 +21,5 @@ AskAI is a lightweight terminal-based utility that allows users to interact with
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/yourusername/askai.git
+   git clone https://github.com/hvbhanot/askai.git
    cd askai
