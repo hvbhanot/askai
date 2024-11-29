@@ -17,6 +17,8 @@ AskAI is a lightweight terminal-based utility that allows users to interact with
 
 ---
 
+### Setting Up `setup.sh` Script on Debian-Based Linux Systems (Preferably Ubuntu)
+
 ## Installation
 
 1. **Clone the repository**:
