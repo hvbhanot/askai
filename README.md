@@ -13,7 +13,7 @@ AskAI is a lightweight terminal-based utility that allows users to interact with
 
 ## Prerequisites
 - **Python 3.x**: Ensure Python is installed on your machine.
-- **Google Generative AI API Key**: Obtain an API key from Google. (It's Free)
+- **Google Generative AI API Key**: Obtain an API key from Google. (It's Free using the modal "gemini-1.5-flash", you can choose to use a more powerful model)
 
 ---
 
