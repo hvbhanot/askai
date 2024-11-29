@@ -1,7 +1,7 @@
 #!/bin/bash
 source askai_env/bin/activate
 if [ $# -eq 0 ]; then
-    echo "Usage: ./askai \"Your prompt here\""
+    echo "Usage: ./askai.sh \"Your prompt here\""
     exit 1
 fi
 
