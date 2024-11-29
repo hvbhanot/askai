@@ -12,6 +12,8 @@ if ! command -v python3 &>/dev/null; then
 else
     echo "Python3 is already installed."
 fi
+
+sudo apt install pip
 echo "-------------------------------"
 
 
