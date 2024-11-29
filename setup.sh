@@ -14,38 +14,41 @@ else
 fi
 echo "-------------------------------"
 
-
-echo "Checking for pipx installation..."
-if ! command -v pipx &>/dev/null; then
-    echo "pipx is not installed. Installing pipx..."
-    sudo apt update
-    sudo apt install -y pipx
-
-    export PATH="$PATH:~/.local/bin"
-else
-    echo "pipx is already installed."
-fi
+# Step 2: Install virtual environment tools
+echo "Setting up a Python virtual environment..."
+sudo apt install -y python3-venv
+python3 -m venv askai_env
+source askai_env/bin/activate
 echo "-------------------------------"
 
-# Step 3: Install required Python packages using pipx
-echo "Installing required Python dependencies using pipx..."
-pipx install google-generativeai
-pipx install python-dotenv
+# Step 3: Ensure setuptools and wheel are available
+echo "Installing setuptools and wheel..."
+sudo apt install -y python3-setuptools python3-wheel
 echo "-------------------------------"
 
-# Step 4: Ask the user for their API key and save it to a .env file
+# Step 4: Install dependencies manually
+echo "Installing required Python packages manually..."
+wget https://files.pythonhosted.org/packages/source/g/google-generativeai/google-generativeai-latest.tar.gz -O google-generativeai.tar.gz
+tar -xvzf google-generativeai.tar.gz
+cd google-generativeai-*
+python3 setup.py install
+cd ..
+sudo apt install -y python3-dotenv
+echo "-------------------------------"
+
+# Step 5: Ask the user for their API key and save it to a .env file
 echo "Please enter your Google Generative AI API key:"
 read -s API_KEY  # -s makes the input secret
 echo "Saving your API key securely in a .env file..."
 echo "API_KEY=\"$API_KEY\"" > .env
 echo "-------------------------------"
 
-# Step 5: Make scripts executable
+# Step 6: Make scripts executable
 echo "Making scripts executable..."
 chmod +x askai.sh
 echo "-------------------------------"
 
-# Step 6: Confirm setup completion
+# Step 7: Confirm setup completion
 echo "Setup is complete. You can now use AskAI by running:"
 echo "./askai.sh \"Your prompt here\""
 echo "-------------------------------"
