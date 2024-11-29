@@ -10,5 +10,4 @@ PROMPT="$*"
 
 python3 main.py "$PROMPT"
 
-# Deactivate the virtual environment after execution
 deactivate
