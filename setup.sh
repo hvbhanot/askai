@@ -14,41 +14,46 @@ else
 fi
 echo "-------------------------------"
 
-# Step 2: Install virtual environment tools
-echo "Setting up a Python virtual environment..."
-sudo apt install -y python3-venv
-python3 -m venv askai_env
+# Step 2: Create a virtual environment
+echo "Creating a virtual environment..."
+if [ ! -d "askai_env" ]; then
+    python3 -m venv askai_env
+    echo "Virtual environment 'askai_env' created."
+else
+    echo "Virtual environment 'askai_env' already exists."
+fi
+echo "-------------------------------"
+
+# Step 3: Activate the virtual environment
+echo "Activating the virtual environment..."
 source askai_env/bin/activate
+echo "Virtual environment activated."
 echo "-------------------------------"
 
-# Step 3: Ensure setuptools and wheel are available
-echo "Installing setuptools and wheel..."
-sudo apt install -y python3-setuptools python3-wheel
+# Step 4: Upgrade pip inside the virtual environment
+echo "Upgrading pip inside the virtual environment..."
+pip install --upgrade pip
 echo "-------------------------------"
 
-# Step 4: Install dependencies manually
-echo "Installing required Python packages manually..."
-wget https://files.pythonhosted.org/packages/source/g/google-generativeai/google-generativeai-latest.tar.gz -O google-generativeai.tar.gz
-tar -xvzf google-generativeai.tar.gz
-cd google-generativeai-*
-python3 setup.py install
-cd ..
-sudo apt install -y python3-dotenv
+# Step 5: Install required Python dependencies
+echo "Installing required Python dependencies..."
+pip install google-generativeai python-dotenv
 echo "-------------------------------"
 
-# Step 5: Ask the user for their API key and save it to a .env file
+# Step 6: Ask the user for their API key and save it to a .env file
 echo "Please enter your Google Generative AI API key:"
 read -s API_KEY  # -s makes the input secret
 echo "Saving your API key securely in a .env file..."
 echo "API_KEY=\"$API_KEY\"" > .env
 echo "-------------------------------"
 
-# Step 6: Make scripts executable
+# Step 7: Make scripts executable
 echo "Making scripts executable..."
 chmod +x askai.sh
 echo "-------------------------------"
 
-# Step 7: Confirm setup completion
-echo "Setup is complete. You can now use AskAI by running:"
-echo "./askai.sh \"Your prompt here\""
+# Step 8: Confirm setup completion
+echo "Setup is complete. To use AskAI:"
+echo "1. Activate the virtual environment: source askai_env/bin/activate"
+echo "2. Run the tool: ./askai.sh \"Your prompt here\""
 echo "-------------------------------"
