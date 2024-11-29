@@ -23,3 +23,18 @@ AskAI is a lightweight terminal-based utility that allows users to interact with
    ```bash
    git clone https://github.com/hvbhanot/askai.git
    cd askai
+   
+2. **Make the `setup.sh` Script Executable**
+
+   Before running the script, update its permissions to make it executable:
+
+   ```bash
+   chmod +x setup.sh
+
+3. Run the scipt
+   ```bash
+   ./setup.sh
+
+4. Now use the scirpt to clarify your doubts instead of the man pages.      
+
+   
