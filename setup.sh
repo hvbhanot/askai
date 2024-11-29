@@ -33,8 +33,6 @@ pipx install google-generativeai
 pipx install python-dotenv
 echo "-------------------------------"
 
-# Note: argparse does not need installation; it's part of Python’s standard library.
-
 # Step 4: Ask the user for their API key and save it to a .env file
 echo "Please enter your Google Generative AI API key:"
 read -s API_KEY  # -s makes the input secret
@@ -44,10 +42,10 @@ echo "-------------------------------"
 
 # Step 5: Make scripts executable
 echo "Making scripts executable..."
-chmod +x askai
+chmod +x askai.sh
 echo "-------------------------------"
 
 # Step 6: Confirm setup completion
 echo "Setup is complete. You can now use AskAI by running:"
-echo "./askai \"Your prompt here\""
+echo "./askai.sh \"Your prompt here\""
 echo "-------------------------------"
